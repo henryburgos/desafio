@@ -21,11 +21,11 @@ pipeline {
 		script {
 
                     	
-			docker login -u henryburgos
-			docker build -t henryburgos/desafio:1.0.0 .
-			docker images
-			docker tag henryburgos/desafio:1.0.0 henryburgos/desafio
-			docker push henryburgos/desafio:1.0.0
+			sh 'docker login -u henryburgos'
+			sh 'docker build -t henryburgos/desafio:1.0.0 .'
+			sh 'docker images'
+			sh 'docker tag henryburgos/desafio:1.0.0 henryburgos/desafio'
+			sh 'docker push henryburgos/desafio:1.0.0'
                     }
 
 				}	
