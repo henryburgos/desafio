@@ -16,12 +16,6 @@ pipeline {
     }
     stages {
 
-        stage('Checkout') {
-            steps {
-                git '${SRC_REPO_URL}'
-            }
-        }
-
     	stage ('Prepare') {
             steps {
 				 script {
