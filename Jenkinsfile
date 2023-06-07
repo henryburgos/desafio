@@ -17,22 +17,22 @@ pipeline {
  
 
 
-	stage('Clonar repositorio') {
+	    stage('Clonar repositorio') {
             steps {
                 git 'https://github.com/henryburgos/desafio.git'
             }
         }
     	stage ('Subiendo') {
             steps {
-		script {
+                script {
 
-                    	
-			
-			sh 'docker build -t henryburgos/desafio:1.0.0 .'
-			sh 'docker images'
-			sh 'docker tag henryburgos/desafio:1.0.0 henryburgos/desafio'
-			sh 'docker push henryburgos/desafio:1.0.0'
-                    }
+                                
+                    
+                    sh 'docker build -t henryburgos/desafio:1.0.0 .'
+                    sh 'docker images'
+                    sh 'docker tag henryburgos/desafio:1.0.0 henryburgos/desafio'
+                    sh 'docker push henryburgos/desafio:1.0.0'
+                            }
 
 				}	
             }
