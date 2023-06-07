@@ -21,10 +21,11 @@ pipeline {
 		script {
 
                     	
-			docker build -t ${IMAGEN_NAME}:${IMAGEN_NAME} .
+			docker login -u henryburgos
+			docker build -t henryburgos/desafio:1.0.0 .
 			docker images
-			docker tag ${IMAGEN_NAME}:${IMAGEN_NAME} ${IMAGEN_NAME}
-			docker push ${IMAGEN_NAME}:${IMAGEN_NAME}
+			docker tag henryburgos/desafio:1.0.0 henryburgos/desafio
+			docker push henryburgos/desafio:1.0.0
                     }
 
 				}	
