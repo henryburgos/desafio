@@ -29,30 +29,7 @@ pipeline {
             }
         }
 
-        stage ('Build') {
-            steps {
-				script {
-					echo 'Build'
-                }	
-            }
-        }
-
-	    stage ('Publish Docker Image') {
-	        steps {
-				script {
-					echo 'Publish Docker Image'
-                }	
-		    }
-	    }
-
-	    stage ('Deploy Docker Container') {
-	        steps {
-				script {
-					echo 'Deploy Docker Container'
-                }
-		    }
-	    }
-
+       
     }
 	post {
 	    always {
