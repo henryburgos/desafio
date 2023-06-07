@@ -1,7 +1,6 @@
 pipeline {
-    agent {
-        label 'master'
-    }
+    agent any
+
     environment {
         //SRC_PROJECT 	= 'desafio'
         SRC_REPO_URL 	= "https://github.com/henryburgos/desafio"
