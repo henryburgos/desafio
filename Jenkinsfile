@@ -14,7 +14,7 @@ pipeline {
         IMAGEN_TAG      = "${BUILD_NUMBER}"
         C_DOCKER_HUB    = "${DOCKERHUB}"
     }
-    stages {
+ 
 
 
 	stage('Clonar repositorio') {
