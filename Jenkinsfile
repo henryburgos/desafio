@@ -28,21 +28,20 @@ pipeline {
 
                                 
                     
-                    sh 'docker build -t henryburgos/desafio:1.0.0 .'
-                    sh 'docker images'
-                    sh 'docker tag henryburgos/desafio:1.0.0 henryburgos/desafio'
-                    sh 'docker push henryburgos/desafio:1.0.0'
-                            }
+                        sh 'docker build -t henryburgos/desafio:1.0.0 .'
+                        sh 'docker images'
+                        sh 'docker tag henryburgos/desafio:1.0.0 henryburgos/desafio'
+                        sh 'docker push henryburgos/desafio:1.0.0'
+                     }
 
 				}	
             }
         }
 
        
-    }
+    
 	post {
 	    always {
 		    cleanWs()
 	    }
     }
-}
