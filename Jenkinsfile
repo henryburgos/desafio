@@ -16,6 +16,12 @@ pipeline {
     }
     stages {
 
+
+	stage('Clonar repositorio') {
+            steps {
+                git 'https://github.com/henryburgos/desafio.git'
+            }
+        }
     	stage ('Subiendo') {
             steps {
 		script {
