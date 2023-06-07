@@ -10,7 +10,7 @@ pipeline {
         //ENVIRONMENT 	= 'desarrollo'
         BRANCH 			= 'master'
         //REGISTRY_SERVER = "${REGISTRY_DEV_SERVER}"
-        IMAGEN_NAME     = 'henryburgos/desafio'
+        IMAGEN_NAME     = 'henryburgos/web-site'
         IMAGEN_TAG      = "${BUILD_NUMBER}"
         C_DOCKER_HUB    = "${DOCKERHUB}"
     }
