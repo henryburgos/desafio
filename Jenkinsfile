@@ -18,7 +18,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'SRC_REPO_URL'
+                git '${SRC_REPO_URL}'
             }
         }
 
@@ -26,8 +26,8 @@ pipeline {
             steps {
 				 script {
 
-                    def dockerImage = docker.build('IMAGEN_NAME':'IMAGEN_TAG')
-                    docker.withRegistry('SRC_REPO_URL', 'C_DOCKER_HUB') {
+                    def dockerImage = docker.build('${IMAGEN_NAME}':'${IMAGEN_TAG}')
+                    docker.withRegistry('${SRC_REPO_URL}', '${C_DOCKER_HUB}') {
                         dockerImage.push()
                     }
 
