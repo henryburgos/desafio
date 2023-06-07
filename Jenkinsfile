@@ -11,7 +11,7 @@ pipeline {
         BRANCH 			= 'master'
         //REGISTRY_SERVER = "${REGISTRY_DEV_SERVER}"
         IMAGEN_NAME     = 'web-site'
-        IMAGEN_TAG      = "${BUILD_ID}"
+        IMAGEN_TAG      = "1"
         C_DOCKER_HUB    = "${DOCKERHUB}"
     }
     stages {
@@ -26,8 +26,8 @@ pipeline {
             steps {
 				 script {
 
-                    def dockerImage = docker.build('${IMAGEN_NAME}':'${IMAGEN_TAG}')
-                    docker.withRegistry('${SRC_REPO_URL}', '${C_DOCKER_HUB}') {
+                    def dockerImage = docker.build('IMAGEN_NAME':'IMAGEN_TAG')
+                    docker.withRegistry('SRC_REPO_URL', 'C_DOCKER_HUB') {
                         dockerImage.push()
                     }
 
