@@ -10,7 +10,7 @@ pipeline {
         //ENVIRONMENT 	= 'desarrollo'
         BRANCH 			= 'master'
         //REGISTRY_SERVER = "${REGISTRY_DEV_SERVER}"
-        IMAGEN_NAME     = 'web-site'
+        IMAGEN_NAME     = 'henryburgos/desafio'
         IMAGEN_TAG      = "1"
         C_DOCKER_HUB    = "${DOCKERHUB}"
     }
@@ -18,10 +18,12 @@ pipeline {
 
     	stage ('Prepare') {
             steps {
-				 script {
+		script {
 
-                    def dockerImage = docker.build('IMAGEN_NAME':'IMAGEN_TAG')
-                    docker.withRegistry('SRC_REPO_URL', 'C_DOCKER_HUB') {
+                    def imageName = "henryburgos/desafio"
+                    def imageTag = "v1.0"
+                    def dockerImage = docker.build("${imageName}:${imageTag}")
+                    docker.withRegistry('https://registry.hub.docker.com', 'DOCKERHUB') {
                         dockerImage.push()
                     }
 
