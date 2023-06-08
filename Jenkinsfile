@@ -1,25 +1,18 @@
-
-pipeline {
+pipeline{
     agent any
-    stages {
-        stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                //submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                    string(name: 'Password', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
-
-            steps {
-                echo "Hello, ${PERSON}, nice to meet you."
-                echo "Hello, ${Password}, nice to meet you."
+    stages{
+        stage('cloning script'){
+            steps{
+                git 'https://github.com/henryburgos/desafio.git'
             }
         }
-      
-        
-        
+        stage('Docker Build'){
+            steps{
+                sh 'docker --version'
+                //sh 'docker build -t kaza514/demo:1.11 .'
+                //sh 'docker kill -f demoapp2'
+                //sh 'docker run -d -p 8081:8080 --name demoapp2 kaza514/demo:1.11'
+            }
+        }
     }
 }
