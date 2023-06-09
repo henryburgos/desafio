@@ -13,11 +13,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-					sh 'sudo docker --version'
-                    sh 'sudo docker build -t "$IMAGEN:$BUILD_NUMBER" .'
-					sh 'sudo docker images'
-					sh 'sudo docker tag "$IMAGEN:$BUILD_NUMBER" "$IMAGEN"'
-					sh 'sudo docker push "$IMAGEN:$BUILD_NUMBER"'
+					sh 'docker --version'
+                    sh 'docker build -t "$IMAGEN:$BUILD_NUMBER" .'
+					sh 'docker images'
+					sh 'docker tag "$IMAGEN:$BUILD_NUMBER" "$IMAGEN"'
+					sh 'docker push "$IMAGEN:$BUILD_NUMBER"'
                 }
             }
         }
