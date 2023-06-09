@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
 					sh 'docker --version'
-                    sh 'docker build "$IMAGEN:$BUILD_NUMBER"'
+                    newApp = 'docker build "$IMAGEN:$BUILD_NUMBER"'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker.image("$IMAGEN:$BUILD_NUMBER").inside('-u root') 
+                    docker image("$IMAGEN:$BUILD_NUMBER")//.inside('-u root') 
 					
                     }
             }
