@@ -14,6 +14,7 @@ pipeline {
             steps {
                 script {
 					sh 'docker --version'
+					sh 'docker login $USUARIO'
                     sh 'docker build -t "$IMAGEN:$BUILD_NUMBER" .'
 					sh 'docker images'
 					sh 'docker tag "$IMAGEN:$BUILD_NUMBER" "$IMAGEN"'
