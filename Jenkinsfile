@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     docker.image("$IMAGEN:$BUILD_NUMBER").inside('-u root') {
-                           sh 'apache2ctl -v'
+                           
                         }
                     }
             }
