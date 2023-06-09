@@ -16,7 +16,8 @@ pipeline {
 					sh 'docker --version'
                     sh 'docker build -t "$IMAGEN:$BUILD_NUMBER" .'
 					sh 'docker images'
-					sh 'docker push "$IMAGEN:$BUILD_NUMBER"
+					sh 'docker tag "$IMAGEN:$BUILD_NUMBER" "$IMAGEN"'
+					sh 'docker push "$IMAGEN:$BUILD_NUMBER"'
                 }
             }
         }
