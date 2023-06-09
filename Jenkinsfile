@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
 					sh 'docker --version'
-                    newApp = 'docker build "$IMAGEN:$BUILD_NUMBER"'
+                    newApp = 'docker build "$IMAGEN:$BUILD_NUMBER" .'
                 }
             }
         }
