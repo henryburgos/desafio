@@ -1,19 +1,46 @@
-pipeline{
+pipeline {
+    environment {
+        IMAGEN = "henryburgos/desafio"
+        USUARIO = 'USER_DOCKERHUB'
+    }
     agent any
-    stages{
-        stage('cloning script'){
-            steps{
-                git 'https://github.com/henryburgos/desafio.git'
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: "master", url: 'https://github.com/henryburgos/desafio.git'
             }
         }
-        stage('Docker Build'){
-            steps{
-                echo "Hola como estan"
-                //sh 'docker --version'
-                //sh 'docker build -t kaza514/demo:1.11 .'
-                //sh 'docker kill -f demoapp2'
-                //sh 'docker run -d -p 8081:8080 --name demoapp2 kaza514/demo:1.11'
+        stage('Build') {
+            steps {
+                script {
+                    newApp = docker.build "$IMAGEN:$BUILD_NUMBER"
+                }
             }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    docker.image("$IMAGEN:$BUILD_NUMBER").inside('-u root') {
+                           sh 'apache2ctl -v'
+                        }
+                    }
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                script {
+                    docker.withRegistry( '', USUARIO ) {
+                        newApp.push()
+                    }
+                }
+            }
+        }
+        stage('Clean Up') {
+            steps {
+                sh "docker rmi $IMAGEN:$BUILD_NUMBER"
+                }
         }
     }
 }
