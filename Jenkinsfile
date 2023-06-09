@@ -22,7 +22,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker image("$IMAGEN:$BUILD_NUMBER")//.inside('-u root') 
+                    docker.image("$IMAGEN:$BUILD_NUMBER").inside('-u root') 
 					
                     }
             }
