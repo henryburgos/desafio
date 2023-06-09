@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        IMAGEN = "henryburgos/desafio"
+        IMAGEN = 'henryburgos/desafio'
         USUARIO = 'USER_DOCKERHUB'
     }
     agent any
@@ -21,9 +21,8 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker.image("$IMAGEN:$BUILD_NUMBER").inside('-u root') {
-                           
-                        }
+                    docker.image("$IMAGEN:$BUILD_NUMBER").inside('-u root') 
+					
                     }
             }
         }
