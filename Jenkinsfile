@@ -3,7 +3,7 @@ pipeline {
         IMAGEN = 'henryburgos/desafio'
         USUARIO = 'USER_DOCKERHUB'
     }
-    agent any
+    agent nodo
     stages {
         stage('Clone') {
             steps {
@@ -15,7 +15,7 @@ pipeline {
                 script {
 					sh 'docker --version'
 					sh 'echo  $USUARIO'
-                    sh 'docker build -t "$IMAGEN:$BUILD_NUMBER"'
+                    sh 'docker build -t "$IMAGEN:$BUILD_NUMBER" .'
 					sh 'docker images'
 					sh 'docker tag "$IMAGEN:$BUILD_NUMBER" "$IMAGEN"'
 					sh 'docker push "$IMAGEN:$BUILD_NUMBER"'
