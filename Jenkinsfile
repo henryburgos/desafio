@@ -1,9 +1,10 @@
 pipeline {
+	agent nodo
+	
     environment {
         IMAGEN = 'henryburgos/desafio'
         USUARIO = 'USER_DOCKERHUB'
     }
-    agent nodo
     stages {
         stage('Clone') {
             steps {
