@@ -1,5 +1,5 @@
 pipeline {
-	agent node
+	agent {node}
 	
     environment {
         IMAGEN = 'henryburgos/desafio'
