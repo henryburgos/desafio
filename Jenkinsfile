@@ -9,6 +9,7 @@ pipeline {
         stage('Clone') {
             steps {
 				checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/henryburgos/desafio']])
+				
             }
         }
         
