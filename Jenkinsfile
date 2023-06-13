@@ -12,6 +12,14 @@ pipeline {
 				
             }
         }
+		 stage('Build Docker image') {
+            steps {
+					sh 'docker --version'
+                    sh 'docker build -t "$IMAGEN:$BUILD_NUMBER" .'
+					sh 'docker images'
+				
+            }
+        }
         
     }
 }
