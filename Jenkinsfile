@@ -46,7 +46,7 @@ pipeline {
         }
 		stage('Build Docker DEV') {
             steps {
-					sshagent(['serverdev']) {
+					sshagent(credentials:['serverdev']) {
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@SERVIDORDEV'
                     sh 'docker run -d --name "$NOMBREWEB" -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"'
                 }
