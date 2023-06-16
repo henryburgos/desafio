@@ -5,7 +5,7 @@ pipeline {
         NOMBREWEB = 'desafio'
 		IMAGEN = 'henryburgos/desafio'
 		SERVIDORDEV = '192.168.1.20'
-		PORT = 8080
+		PORT = 8089
         
     }
     stages {
