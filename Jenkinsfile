@@ -2,7 +2,10 @@ pipeline {
 	agent any
 	
     environment {
-        IMAGEN = 'henryburgos/desafio'
+        NOMBREWEB = 'desafio'
+		IMAGEN = 'henryburgos/desafio'
+		SERVIDORDEV = '192.168.1.20'
+		PORT = 8080
         
     }
     stages {
@@ -42,9 +45,11 @@ pipeline {
             }
         }
 		stage('Build Docker DEV') {
-			agent dev
             steps {
-					sh 'touch /home/ubuntu/prueba.txt'	
+					sshagent(['serverdev']) {
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@SERVIDORDEV'
+                    sh 'docker run -d --name "$NOMBREWEB" -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"'
+                }
 				
             }
         }
