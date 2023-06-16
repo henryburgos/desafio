@@ -22,7 +22,7 @@ pipeline {
         }
 		stage('Push Docker Hub') {
             steps {
-					echo "-=- push Docker image -=-"
+					
 					withDockerRegistry([ credentialsId: "USUARIO", url: "" ]) {
 						sh 'docker push "$IMAGEN:$BUILD_NUMBER"'
 					}	
