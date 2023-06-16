@@ -52,7 +52,7 @@ pipeline {
 						echo 'Creando docker'
 						
 						
-						sh 'docker run -d --name "$NOMBREWEB" -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"'
+						sh 'docker run -d -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"'
 					}
                 
 				
