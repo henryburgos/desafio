@@ -20,6 +20,12 @@ pipeline {
 				
             }
         }
+		stage('Push Docker Hub') {
+            steps {
+                    sh 'docker push "$IMAGEN:$BUILD_NUMBER" .'
+				
+            }
+        }
         
     }
 }
