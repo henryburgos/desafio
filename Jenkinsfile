@@ -3,7 +3,7 @@ pipeline {
 	
     environment {
         IMAGEN = 'henryburgos/desafio'
-        USUARIO = '$USER_DOCKERHUB'
+        
     }
     stages {
         stage('Clone') {
@@ -23,7 +23,7 @@ pipeline {
 		stage('Push Docker Hub') {
             steps {
 					
-					withCredentials([usernamePassword(credentialsId: '$USER_DOCKERHUB', passwordVariable: '$passx', usernameVariable: '$usuario')]) {
+					withCredentials([usernamePassword(credentialsId: 'USER_DOCKERHUB', passwordVariable: 'passx', usernameVariable: 'usuario')]) {
 						sh 'docker login -u "$usuario" -p "$passx"'
 						sh 'docker push "$IMAGEN:$BUILD_NUMBER"'
 					}	
