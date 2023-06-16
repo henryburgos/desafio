@@ -3,7 +3,7 @@ pipeline {
 	
     environment {
         IMAGEN = 'henryburgos/desafio'
-        USUARIO = 'USER_DOCKERHUB'
+        USUARIO = '$USER_DOCKERHUB'
     }
     stages {
         stage('Clone') {
