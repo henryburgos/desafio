@@ -47,9 +47,6 @@ pipeline {
 		stage('Build Docker DEV') {
             steps {
 					
-                    
-                    sh 'docker run -d --name "$NOMBREWEB" -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"'
-					
 					withCredentials([usernamePassword(credentialsId: 'serverdev', passwordVariable: 'ser_passx', usernameVariable: 'ser_usuario')]) {
 						sh 'ssh -o StrictHostKeyChecking=no "$ser_usuario"@"$SERVIDORDEV"'
 						echo 'Creando docker'
