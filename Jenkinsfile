@@ -22,7 +22,8 @@ pipeline {
         }
 		stage('Push Docker Hub') {
             steps {
-                    sh 'docker push "$IMAGEN:$BUILD_NUMBER" master'
+					sh 'docker tag "$IMAGEN:$BUILD_NUMBER" "$IMAGEN"'
+                    sh 'docker push "$IMAGEN:$BUILD_NUMBER" .'
 				
             }
         }
