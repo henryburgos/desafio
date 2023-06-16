@@ -48,7 +48,7 @@ pipeline {
             steps {
 					
 					withCredentials([usernamePassword(credentialsId: 'serverdev', passwordVariable: 'ser_passx', usernameVariable: 'ser_usuario')]) {
-						sh "sshpass -p '${ser_passx}' ssh -o StrictHostKeyChecking=no "$ser_usuario"@"$SERVIDORDEV""
+					
 						echo 'Creando docker'
 						sh 'docker kill $(docker ps | grep "$NOMBREWEB")'
 						sh 'docker rm $(docker ps -a -q | grep "$NOMBREWEB")'
