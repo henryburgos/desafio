@@ -15,6 +15,7 @@ pipeline {
 		 stage('Build Docker image') {
             steps {
 					sh 'docker --version'
+					sh 'docker rmi -f $(docker images -q)'
                     sh 'docker build -t "$IMAGEN:$BUILD_NUMBER" .'
 					sh 'docker images'
 				
