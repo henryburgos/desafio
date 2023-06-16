@@ -23,7 +23,8 @@ pipeline {
 		stage('Push Docker Hub') {
             steps {
 					
-					withDockerRegistry([ credentialsId: "USUARIO", url: "" ]) {
+					withCredentials([usernamePassword(credentialsId: 'USER_DOCKERHUB', passwordVariable: 'password', usernameVariable: 'usuario')]) {
+						sh 'docker login -u $usuario -p $password $USER_DOCKERHUB'
 						sh 'docker push "$IMAGEN:$BUILD_NUMBER"'
 					}	
 				
@@ -32,3 +33,5 @@ pipeline {
         
     }
 }
+
+
