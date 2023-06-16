@@ -47,7 +47,7 @@ pipeline {
 		stage('Build Docker DEV') {
             steps {
 					
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@"$SERVIDORDEV"'
+                    sh 'sudo ssh -o StrictHostKeyChecking=no ubuntu@"$SERVIDORDEV"'
                     sh 'docker run -d --name "$NOMBREWEB" -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"'
                 
 				
