@@ -24,7 +24,7 @@ pipeline {
             steps {
 					
 					withCredentials([usernamePassword(credentialsId: 'USER_DOCKERHUB', passwordVariable: 'pass', usernameVariable: 'usuario')]) {
-						sh 'docker login -u $usuario -p $pass'
+						sh 'docker login -u $usuario'
 						sh 'docker push "$IMAGEN:$BUILD_NUMBER"'
 					}	
 				
