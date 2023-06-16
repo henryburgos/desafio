@@ -51,7 +51,7 @@ pipeline {
 					
 						echo 'Creando docker'
 						
-						sh 'docker rm $(docker ps -a -q | grep "$NOMBREWEB")'
+						
 						sh 'docker run -d --name "$NOMBREWEB" -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"'
 					}
                 
