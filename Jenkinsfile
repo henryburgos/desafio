@@ -50,7 +50,7 @@ pipeline {
 					withCredentials([usernamePassword(credentialsId: 'serverdev', passwordVariable: 'ser_passx', usernameVariable: 'ser_usuario')]) {
 					
 						echo 'Creando docker'
-						sh 'docker kill $(docker ps | grep "$NOMBREWEB")'
+						
 						sh 'docker rm $(docker ps -a -q | grep "$NOMBREWEB")'
 						sh 'docker run -d --name "$NOMBREWEB" -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"'
 					}
