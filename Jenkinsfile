@@ -22,13 +22,13 @@ pipeline {
         }
 		stage('Push Docker Hub') {
             steps {
-					sh 'docker tag "$IMAGEN:$BUILD_NUMBER" "$IMAGEN"'
-                    sh 'docker push "$IMAGEN:$BUILD_NUMBER" .'
+					echo "-=- push Docker image -=-"
+					withDockerRegistry([ credentialsId: "USUARIO", url: "" ]) {
+						sh 'docker push "$IMAGEN:$BUILD_NUMBER"'
+					}	
 				
             }
         }
         
     }
 }
-
-
