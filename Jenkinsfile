@@ -51,11 +51,11 @@ pipeline {
 						script {
 								
 									
-									if docker ps -a --format '{{.Names}}' | grep -Eq "^${CONTAINER_NAME}\$"; then
+									if docker ps -a --format '{{.Names}}' | grep -Eq "$CONTAINER_NAME"; then
 									  echo "El contenedor existe. Eliminando..."
 									 
-									  docker stop ${CONTAINER_NAME}
-									  docker rm ${CONTAINER_NAME}
+									  docker stop "$CONTAINER_NAME"
+									  docker rm "$CONTAINER_NAME"
 									  docker system prune -a
 									  
 									else
@@ -63,7 +63,7 @@ pipeline {
 									fi
 
 								
-									if docker ps -a --format '{{.Names}}' | grep -Eq "^${CONTAINER_NAME}\$"; then
+									if docker ps -a --format '{{.Names}}' | grep -Eq "$CONTAINER_NAME"; then
 									  echo "No se pudo eliminar el contenedor."
 									  exit 1
 									else
