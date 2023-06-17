@@ -92,9 +92,9 @@ pipeline {
 								
 									
 									sh '''
-										  RESULTADO = 'set -i 's/"$IMAGEN"/"$IMAGEN:$BUILD_NUMBER" /g' "$KUBERNETES_DEPLOYMENT"'
-										  echo $RESULTADO
-										  kubectl apply -f "$RESULTADO" 
+										  set -i 's/"$IMAGEN"/"$IMAGEN:$BUILD_NUMBER" /g' /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
+										  cat /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
+										  kubectl apply -f "$KUBERNETES_DEPLOYMENT" 
 										  kubectl apply -f "$KUBERNETES_SERVICE" 
 										'''
 							
