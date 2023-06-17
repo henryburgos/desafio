@@ -20,13 +20,33 @@ pipeline {
 		 stage('Build Docker image') {
             steps {
 					
-					sh 'docker --version'
-					echo 'Eliminando imagenes antiguas'
-					sh 'docker rmi -f $(docker images -q)'
-					echo 'Construyendo imagen'
-                    sh 'docker build -t "$IMAGEN:$BUILD_NUMBER" .'
-					echo 'Visualizando imagen'
-					sh 'docker images'
+					sh '''if docker ps -a --format \'{{.Names}}\' | grep -Eq "$CONTAINER_NAME"; then
+							 echo "El contenedor existe. Eliminando..."
+							 
+							 docker stop "$CONTAINER_NAME"
+							 docker rm "$CONTAINER_NAME"
+							 docker system prune -a
+  
+						   else
+							 echo "El contenedor no existe."
+						   fi
+										  
+										  
+							if docker ps -a --format \'{{.Names}}\' | grep -Eq "$CONTAINER_NAME"; then
+							  echo "No se pudo eliminar el contenedor."
+							  exit 1
+							else
+							    echo "El contenedor ha sido eliminado correctamente."
+							fi
+							
+							echo 'Construyendo imagen'
+							docker build -t "$IMAGEN:$BUILD_NUMBER" .
+							echo 'Visualizando imagen'
+							docker images
+					
+						'''
+					
+	
 				
             }
         }
