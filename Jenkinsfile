@@ -6,6 +6,8 @@ pipeline {
 		IMAGEN = 'henryburgos/desafio'
 		SERVIDORDEV = '192.168.1.20'
 		PORT = 8089
+		KUBERNETES_DEPLOYMENT = ''
+		KUBERNETES_SERVICE = ''
         
     }
     stages {
@@ -82,7 +84,23 @@ pipeline {
 				
             }
         }
-        
+        stage('Build Kubernetes DEV') {
+            steps {
+					
+					withCredentials([usernamePassword(credentialsId: 'serverdev', passwordVariable: 'ser_passx', usernameVariable: 'ser_usuario')]) {
+						
+								
+									
+									sh '''
+										  kubectl apply -f "$KUBERNETES_DEPLOYMENT" 
+										  kubectl apply -f "$KUBERNETES_SERVICE" 
+										'''
+							
+					}
+                
+				
+            }
+        }
     }
 }
 
