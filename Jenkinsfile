@@ -92,7 +92,7 @@ pipeline {
 								
 									
 									sh '''
-										  set -i 's/$IMAGEN/$IMAGEN:$BUILD_NUMBER/g' /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
+										  set -i 's/${IMAGEN/${IMAGEN:$BUILD_NUMBER}/g' /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
 										  cat /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
 										  kubectl apply -f "$KUBERNETES_DEPLOYMENT" 
 										  kubectl apply -f "$KUBERNETES_SERVICE" 
