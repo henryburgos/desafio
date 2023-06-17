@@ -1,0 +1,36 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "desafio3-deployment"
+  },
+  "spec": {
+    "replicas": 4,
+    "selector": {
+      "matchLabels": {
+        "app": "desafio3"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "desafio3"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "desafio3",
+            "image": "henryburgos/desafio",
+            "imagePullPolicy": "Never",
+            "ports": [
+              {
+                "containerPort": 80
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
