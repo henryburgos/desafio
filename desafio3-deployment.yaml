@@ -16,4 +16,4 @@ spec:
       - name: desafio3
         image: henryburgos/desafio:53
         ports:
-        - containerPort: 8085
+        - containerPort: 80
