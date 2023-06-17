@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	
     environment {
-        NOMBREWEB = 'desafio'
+        CONTAINER_NAME = 'desafio'
 		IMAGEN = 'henryburgos/desafio'
 		SERVIDORDEV = '192.168.1.20'
 		PORT = 8089
@@ -48,11 +48,32 @@ pipeline {
             steps {
 					
 					withCredentials([usernamePassword(credentialsId: 'serverdev', passwordVariable: 'ser_passx', usernameVariable: 'ser_usuario')]) {
-					
-						echo 'Creando docker'
-						
-						
-						sh 'docker run -d -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"'
+						script {
+								
+									
+									if docker ps -a --format '{{.Names}}' | grep -Eq "^${CONTAINER_NAME}\$"; then
+									  echo "El contenedor existe. Eliminando..."
+									 
+									  docker stop ${CONTAINER_NAME}
+									  docker rm ${CONTAINER_NAME}
+									  docker system prune -a
+									  
+									else
+									  echo "El contenedor no existe."
+									fi
+
+								
+									if docker ps -a --format '{{.Names}}' | grep -Eq "^${CONTAINER_NAME}\$"; then
+									  echo "No se pudo eliminar el contenedor."
+									  exit 1
+									else
+									  echo "El contenedor ha sido eliminado correctamente."
+									fi
+
+									echo 'Creando docker'
+								
+									docker run -d --name "$CONTAINER_NAME" -p "$PORT":80 "$IMAGEN:$BUILD_NUMBER"
+							}
 					}
                 
 				
