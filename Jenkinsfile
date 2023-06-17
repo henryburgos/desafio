@@ -6,8 +6,8 @@ pipeline {
 		IMAGEN = 'henryburgos/desafio'
 		SERVIDORDEV = '192.168.1.20'
 		PORT = 8089
-		KUBERNETES_DEPLOYMENT = ''
-		KUBERNETES_SERVICE = ''
+		KUBERNETES_DEPLOYMENT = 'https://github.com/henryburgos/desafio/blob/master/desafio3-deployment.yaml'
+		KUBERNETES_SERVICE = 'https://github.com/henryburgos/desafio/blob/master/desafio3-service.yaml'
         
     }
     stages {
