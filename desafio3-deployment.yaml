@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: desafio3
-        image: henryburgos/desafio
+        image: henryburgos/desafio:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 80
+        - containerPort: 8085
