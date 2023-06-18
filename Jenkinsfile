@@ -41,6 +41,7 @@ pipeline {
 							    echo "El contenedor ha sido eliminado correctamente."
 							fi
 							
+							docker rmi -f $(docker images -q)
 							echo 'Construyendo imagen'
 							docker build -t "$IMAGEN:$BUILD_NUMBER" .
 							echo 'Visualizando imagen'
@@ -92,7 +93,7 @@ pipeline {
 								
 									
 									sh '''
-										  set -i 's/"${IMAGEN}"/"${IMAGEN}:${BUILD_NUMBER}"/g' /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
+										  sed -i 's/${IMAGEN}/"${IMAGEN}:${BUILD_NUMBER}"/g' /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
 										  cat /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
 										  kubectl apply -f "$KUBERNETES_DEPLOYMENT" 
 										  kubectl apply -f "$KUBERNETES_SERVICE" 
