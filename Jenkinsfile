@@ -41,7 +41,7 @@ pipeline {
 							    echo "El contenedor ha sido eliminado correctamente."
 							fi
 							
-							docker rmi -f $(docker images -q)
+							
 							echo 'Construyendo imagen'
 							docker build -t "$IMAGEN:$BUILD_NUMBER" .
 							echo 'Visualizando imagen'
