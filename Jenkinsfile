@@ -4,7 +4,6 @@ pipeline {
     environment {
         CONTAINER_NAME = 'web'
 		IMAGEN = 'henryburgos/web'
-		SERVIDORDEV = '192.168.1.20'
 		PORT = 8089
 		KUBERNETES_DEPLOYMENT = 'desafio3-deployment.yaml'
 		KUBERNETES_SERVICE = 'desafio3-service.yaml'
