@@ -2,8 +2,8 @@ pipeline {
 	agent any
 	
     environment {
-        CONTAINER_NAME = 'desafio'
-		IMAGEN = 'henryburgos/desafio'
+        CONTAINER_NAME = 'web'
+		IMAGEN = 'henryburgos/web'
 		SERVIDORDEV = '192.168.1.20'
 		PORT = 8089
 		KUBERNETES_DEPLOYMENT = 'desafio3-deployment.yaml'
@@ -93,7 +93,7 @@ pipeline {
 								
 									
 									sh '''
-										  sed -i 's/'/$CONTAINER_NAME'/'/$CONTAINER_NAME:$BUILD_NUMBER'/g' /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
+										  sed -i 's/'$CONTAINER_NAME'/'$CONTAINER_NAME:$BUILD_NUMBER'/g' /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
 										  cat /var/lib/jenkins/workspace/desafio/"$KUBERNETES_DEPLOYMENT"
 										  kubectl apply -f "$KUBERNETES_DEPLOYMENT" 
 										  kubectl apply -f "$KUBERNETES_SERVICE" 
