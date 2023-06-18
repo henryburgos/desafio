@@ -70,9 +70,7 @@ pipeline {
             steps {
 					
 					withCredentials([usernamePassword(credentialsId: 'serverdev', passwordVariable: 'ser_passx', usernameVariable: 'ser_usuario')]) {
-						
-								
-									
+
 									sh '''
 										  echo \'Creando docker\'
 										  
